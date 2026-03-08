@@ -1,0 +1,56 @@
+graph TB
+    subgraph Input["📥 Wejście Użytkownika"]
+        USER[Analityk/Architekt]
+        FILES[Pliki: DOCX, SQL, XMI, BPMN]
+        QUERY[Zapytanie biznesowe]
+    end
+    
+    subgraph Brain["🧠 Mózg Systemu"]
+        ORCH[Orchestrator<br/>Centralny Koordynator]
+        TRIAGE[Triage Router<br/>Analiza intencji]
+        ROOM[(Discuss Room<br/>Czarna Tablica)]
+    end
+    
+    subgraph Agents["👥 Zespół Agentów"]
+        A1[📋 Analyst Agent<br/>Wymagania biznesowe]
+        A2[🗄️ DB Agent<br/>Architektura danych]
+        A3[🎨 UML Agent<br/>Design systemu]
+        A4[🔄 BPMN Agent<br/>Procesy biznesowe]
+        A5[⚖️ Expert Agent<br/>Audyt i QA]
+    end
+    
+    subgraph Output["📤 Wyniki"]
+        REPORT[📊 Raport Zaawansowany<br/>+ Macierz Śledzenia]
+        DIAGRAMS[🎨 Diagramy<br/>Mermaid/PlantUML]
+        COSTS[💰 Raport Kosztów<br/>Token by token]
+    end
+    
+    USER --> FILES
+    USER --> QUERY
+    
+    FILES --> ORCH
+    QUERY --> ORCH
+    
+    ORCH <--> TRIAGE
+    ORCH <--> ROOM
+    
+    TRIAGE -.->|Dynamiczne<br/>powoływanie| A1
+    TRIAGE -.->|Selektywna<br/>aktywacja| A2
+    TRIAGE -.->|Only if needed| A3
+    TRIAGE -.->|Only if needed| A4
+    
+    A1 --> ROOM
+    A2 --> ROOM
+    A3 --> ROOM
+    A4 --> ROOM
+    
+    ROOM --> A5
+    
+    A5 --> REPORT
+    A5 --> DIAGRAMS
+    A5 --> COSTS
+    
+    style Brain fill:#ffd43b,stroke:#fab005,stroke-width:3px
+    style ORCH fill:#00d4ff,stroke:#0099cc,stroke-width:2px
+    style A5 fill:#51cf66,stroke:#2f9e44,stroke-width:2px
+    style Output fill:#d0bfff,stroke:#9775fa,stroke-width:2px
